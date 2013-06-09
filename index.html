@@ -57,43 +57,34 @@
 	var beats_rene = document.getElementsByClassName("rene");
 	var beats_tomi = document.getElementsByClassName("tomi");
 
-	var lock = false;
-
 	var pos = 0;
 
 	var hlasky = ['Tomi Kokotovič', 'Kokotovič', 'Producent z Ameriky', 'Hitmajker', 'Odhŕňač', '6 člen americkej kapely', 'Smažáčik', 'Bazerant', 'Strýko Fester', 'Teplý'];
 	var poss = [0, 1, 1, 2, 3, 4, 0, 1, 2, 1]
 
 	bublinka.onclick = function(){
-		if(!lock){
-			_gaq.push(['_trackEvent','link','click','true']);
-			lock = true;
-			pusa.className = "papam";
+		_gaq.push(['_trackEvent','link','click','rene_bublina']);
+		pusa.className = "papam";
 
-			var el = document.createElement("div");
-			el.className = "pos a-" + pos;
-			el.style.left = ((Math.random()*960)-100) + "px";
+		var el = document.createElement("div");
+		el.className = "pos a-" + pos;
+		el.style.left = ((Math.random()*960)-100) + "px";
 
-			mehehe.appendChild(el);
+		mehehe.appendChild(el);
 
-			bublinka.innerHTML = "<h1>" + hlasky[pos] + "</h1>";
-			beats_rene[pos].play();
+		bublinka.innerHTML = "<h1>" + hlasky[pos] + "</h1>";
+		beats_rene[pos].play();
 
-			beats_rene[pos].addEventListener('ended', function(){
-				pusa.className = "";
-				pusa2.className = "papam";
+		beats_rene[pos].addEventListener('ended', function(){
+			pusa.className = "";
+			pusa2.className = "papam";
 
-				beats_tomi[poss[pos]].play();
-			});
-			beats_tomi[poss[pos]].addEventListener('ended', function(){
-				pusa2.className = "";
-				pos = Math.floor(Math.random()*hlasky.length);
-				lock = false;
-			});
-		}else{
-			_gaq.push(['_trackEvent','link','click','false']);
-		}
-
+			beats_tomi[poss[pos]].play();
+		});
+		beats_tomi[poss[pos]].addEventListener('ended', function(){
+			pusa2.className = "";
+			pos = Math.floor(Math.random()*hlasky.length);
+		});
 	};
 </script>
 
