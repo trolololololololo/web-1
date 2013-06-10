@@ -53,6 +53,7 @@
 	position: relative;
 	background: #e443e7;
 }
+body{overflow: hidden;}
 </style>
 <div id="preloader"><div id="dusky"></div><p>nacitavanie</p></div>
 <div id="jebe"></div>
@@ -177,6 +178,7 @@ if (!Object.prototype.unwatch) {
 			preloader.style.opacity = 0;
 			setTimeout(function () {
 				preloader.style.zIndex = 0;
+				document.getElementsByTagName("body")[0].style.overflow = 'auto';
 			}, 300);
 		});
 
