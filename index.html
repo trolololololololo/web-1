@@ -15,14 +15,16 @@
 
   _gaq.push(['_trackPageview']);
 
-  // (function() {
-  //   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  //   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  //   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  // })();
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
 </script>
 </head>
+<div id="jebe"></div>
+<div id="bonus">BONUS +20</div>
 <div id="mehehe">
 <div id="counter">0</div>
 <div id="bublina">Klikni tu</div>
@@ -110,7 +112,9 @@ if (!Object.prototype.unwatch) {
 		}
 	});
 }
+	var jebe = document.getElementById("jebe");
 	var bublinka = document.getElementById("bublina");
+	var bonus = document.getElementById("bonus");
 	var mehehe = document.getElementById("mehehe");
 	var pusa = document.getElementById("pusa");
 	var pusa2 = document.getElementById("pusa_2");
@@ -132,11 +136,26 @@ if (!Object.prototype.unwatch) {
 		counter.innerHTML = o.con;
 	}
 
+jebe.onclick = function() {
+	o.con = o.con + 20;
+	localStorage["cont"] = o.con;
+	counter.innerHTML = o.con;
+	_gaq.push(['_trackEvent','link','click','jebe']);
+	bonus.className = 'kk';
+	setTimeout(function () {
+	bonus.className = '';
+				}, 1500);
+}
 
 o.watch("con", function (id, oldval, newval) {
     // console.log( "o." + id + " changed from " + oldval + " to " + newval );
 	if(newval % 5 == 0){
 		o.time = (o.time < 3500) ? Math.floor(Math.random() * o.time + 3000) : (o.time - 1000);
+		jebe.className = 'anim';
+		setTimeout(function () {
+			jebe.className = '';
+				}, 1500);
+
 		beats_bonus[0].play();
 	}
     return newval;
@@ -257,6 +276,39 @@ html, body {
 	-webkit-animation: bg .5s infinite;
 	-moz-animation: bg .5s infinite;
 }
+#jebe{
+	position: fixed;
+	background: url(./assets/img/jebe.png) top left;
+	width: 222px;
+	height: 360px;
+	z-index: 9;
+	bottom: 0;
+	right: -222px;
+	cursor: pointer;
+}
+#bonus{
+	display: none;
+	position: fixed;
+	background: pink;
+	text-align: center;
+	padding-top: 30px;
+	height: 130px;
+	margin-top: -65px;
+	margin-left: -150px;
+	width: 300px;
+	font-size: 46px;
+	z-index: 20;
+	top: 50%;
+	left: 50%;
+	display: none;
+}
+.kk{
+	display: block !important;
+}
+.anim{
+	-webkit-animation: jebe 1.5s;
+	-moz-animation: jebe 1.5s;
+}
 #bublina h1{
 	font-size: 24px;
 	margin: 0;
@@ -293,6 +345,20 @@ html, body {
     0% { -moz-transform: translate(0px, 10px); }
     50% { -moz-transform: translate(0px, 15px); }
     100% { -moz-transform: translate(0, 10px); }
+}
+@-webkit-keyframes jebe {
+    0% { -webkit-transform: translate(0px, 0px); }
+    30% { -webkit-transform: translate(-500px, -150px); }
+    50% { -webkit-transform: translate(-450px, -150px); }
+    70% { -webkit-transform: translate(-500px, -150px); }
+    100% { -webkit-transform: translate(0, 0px); }
+}
+@-moz-keyframes jebe {
+    0% { -moz-transform: translate(0px, 0px); }
+    30% { -moz-transform: translate(-500px, -150px); }
+    50% { -moz-transform: translate(-450px, -150px); }
+    70% { -moz-transform: translate(-500px, -150px); }
+    100% { -moz-transform: translate(0, 0px); }
 }
 @-moz-keyframes nemel {
     0% { -moz-transform: translate(0px, 10px); }
