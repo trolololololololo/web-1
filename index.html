@@ -226,6 +226,7 @@ o.watch("con", function (id, oldval, newval) {
 				localStorage["cont"] = o.con;
 				counter.innerHTML = o.con;
 				_gaq.push(['_trackEvent','link','click','element']);
+				beats_tomi[0].play();
 				setTimeout(function () {
 					el.style.display = "none";
 				}, 1000);
